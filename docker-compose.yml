@@ -12,16 +12,16 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - .:/usr/share/nginx/html:ro
+      - ./src:/usr/share/nginx/html:ro
 
   matomo-db:
     image: mariadb
     container_name: matomo_db
     environment:
-      - MARIADB_DATABASE=matomo
-      - MARIADB_USER=matomo
-      - MARIADB_PASSWORD=matomo_password # Puedes cambiar esta contraseña
-      - MARIADB_ROOT_PASSWORD=root_password # Puedes cambiar esta contraseña
+      - MARIADB_DATABASE=${MATOMO_DB_NAME}
+      - MARIADB_USER=${MATOMO_DB_USER}
+      - MARIADB_PASSWORD=${MATOMO_DB_PASSWORD}
+      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
     volumes:
       - matomo_db_data:/var/lib/mysql
 
@@ -36,8 +36,8 @@ services:
       - MATOMO_DATABASE_HOST=matomo-db
       - MATOMO_DATABASE_ADAPTER=mysql
       - MATOMO_DATABASE_TABLES_PREFIX=matomo_
-      - MATOMO_DATABASE_DBNAME=matomo
-      - MATOMO_DATABASE_USERNAME=matomo
-      - MATOMO_DATABASE_PASSWORD=matomo_password # Debe coincidir con la de matomo-db
+      - MATOMO_DATABASE_DBNAME=${MATOMO_DB_NAME}
+      - MATOMO_DATABASE_USERNAME=${MATOMO_DB_USER}
+      - MATOMO_DATABASE_PASSWORD=${MATOMO_DB_PASSWORD}
     volumes:
       - matomo_app_data:/var/www/html
