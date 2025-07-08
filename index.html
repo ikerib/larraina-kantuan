@@ -16,6 +16,21 @@
             color: #4a5568; /* gray-600 */
         }
     </style>
+        <!-- Matomo -->
+    <script>
+      var _paq = window._paq = window._paq || [];
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="//localhost:8081/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <!-- End Matomo Code -->
 </head>
 <body class="bg-gray-100">
     <a href="#aurkibidea" id="back-to-top-btn" class="fixed bottom-8 right-8 bg-blue-600 text-white py-3 px-4 rounded-full shadow-lg hover:bg-blue-700 transition-opacity duration-300 opacity-0 z-50">
@@ -27,7 +42,7 @@
         <header class="text-center my-8">
             <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900">KANTUAN</h1>
             <p class="text-lg text-gray-600 mt-2">Euskal Abestiak</p>
-            <a href="larraina-kantuan.pdf" download="larraina-kantuan.pdf" class="mt-6 inline-block bg-green-600 text-white font-bold py-3 px-6 rounded-full shadow-lg hover:bg-green-700 transition-transform transform hover:scale-105">
+            <a href="larraina-kantuan.pdf" target="_blank" ="larraina-kantuan.pdf" class="mt-6 inline-block bg-green-600 text-white font-bold py-3 px-6 rounded-full shadow-lg hover:bg-green-700 transition-transform transform hover:scale-105">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block mr-2 align-text-bottom" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
                 </svg>

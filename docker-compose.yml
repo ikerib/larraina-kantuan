@@ -1,5 +1,9 @@
 version: '3.8'
 
+volumes:
+  matomo_db_data: {}
+  matomo_app_data: {}
+
 services:
   app:
     build:
@@ -9,3 +13,31 @@ services:
       - "8080:80"
     volumes:
       - .:/usr/share/nginx/html:ro
+
+  matomo-db:
+    image: mariadb
+    container_name: matomo_db
+    environment:
+      - MARIADB_DATABASE=matomo
+      - MARIADB_USER=matomo
+      - MARIADB_PASSWORD=matomo_password # Puedes cambiar esta contraseña
+      - MARIADB_ROOT_PASSWORD=root_password # Puedes cambiar esta contraseña
+    volumes:
+      - matomo_db_data:/var/lib/mysql
+
+  matomo:
+    image: matomo
+    container_name: matomo_app
+    depends_on:
+      - matomo-db
+    ports:
+      - "8081:80"
+    environment:
+      - MATOMO_DATABASE_HOST=matomo-db
+      - MATOMO_DATABASE_ADAPTER=mysql
+      - MATOMO_DATABASE_TABLES_PREFIX=matomo_
+      - MATOMO_DATABASE_DBNAME=matomo
+      - MATOMO_DATABASE_USERNAME=matomo
+      - MATOMO_DATABASE_PASSWORD=matomo_password # Debe coincidir con la de matomo-db
+    volumes:
+      - matomo_app_data:/var/www/html
